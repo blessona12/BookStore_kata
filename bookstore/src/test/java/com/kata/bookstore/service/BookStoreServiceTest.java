@@ -17,4 +17,10 @@ public class BookStoreServiceTest {
         var store = new BookStoreService();
         assertThat(store.price(1)).isEqualTo(50.0);
     }
+
+    @Test
+    void two_same_books_no_discount() {
+        var store = new BookStoreService();
+        assertThat(store.price(1,1)).isEqualTo(100.0);
+    }
 }
