@@ -37,4 +37,10 @@ public class BookStoreServiceTest {
         var store = new BookStoreService();
         assertThat(store.price(Book.ONE, Book.TWO, Book.THREE)).isEqualTo(50 * 3 * 0.90);
     }
+
+    @Test
+    void two_same_and_one_different() {
+        var store = new BookStoreService();
+        assertThat(store.price(Book.ONE, Book.ONE, Book.TWO)).isEqualTo(50 + 50 * 2 * 0.95);
+    }
 }
