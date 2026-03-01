@@ -16,12 +16,19 @@ public class BookStoreServiceTest {
     @Test
     void one_book_costs_fifty_euros() {
         var store = new BookStoreService();
-        assertThat(store.price(Book.I)).isEqualTo(50.0);
+        assertThat(store.price(Book.ONE)).isEqualTo(50.0);
     }
 
     @Test
     void two_same_books_no_discount() {
         var store = new BookStoreService();
-        assertThat(store.price(Book.I, Book.I)).isEqualTo(100.0);
+        assertThat(store.price(Book.ONE, Book.ONE)).isEqualTo(100.0);
+    }
+
+    @Test
+    void two_different_books_5_percent_discount() {
+        var store = new BookStoreService();
+        assertThat(store.price(Book.ONE, Book.TWO))
+                .isEqualTo(100.0 * 0.95);
     }
 }
