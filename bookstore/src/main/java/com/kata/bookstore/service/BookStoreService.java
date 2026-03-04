@@ -27,6 +27,10 @@ public class BookStoreService {
     public BigDecimal price(Book... books) {
         memo.clear();
 
+        if (books == null) {
+            throw new IllegalArgumentException("Books array cannot be null");
+        }
+
         if (books.length == 0) {
             return BigDecimal.ZERO;
         }
