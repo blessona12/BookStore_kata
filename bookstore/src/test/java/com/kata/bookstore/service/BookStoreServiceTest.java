@@ -49,4 +49,15 @@ public class BookStoreServiceTest {
         var store = new BookStoreService();
         assertThat(store.price(Book.ONE, Book.ONE, Book.TWO, Book.TWO)).isEqualTo(2 * (50 * 2 * 0.95));
     }
+
+    @Test
+    void tricky_case_two_groups_of_four() {
+        var store = new BookStoreService();
+        assertThat(store.price(
+                Book.ONE, Book.ONE,
+                Book.TWO, Book.TWO,
+                Book.THREE, Book.THREE,
+                Book.FOUR, Book.FIVE
+        )).isEqualTo(2 * (50 * 4 * 0.80)); // 51.2
+    }
 }
