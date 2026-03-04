@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class BookStoreServiceTest {
 
@@ -13,6 +14,14 @@ public class BookStoreServiceTest {
     void empty_basket_should_cost_zero() {
         var store = new BookStoreService();
         assertThat(store.price()).isZero();
+    }
+
+    @Test
+    void null_books_array_throws_exception() {
+        var store = new BookStoreService();
+        assertThatThrownBy(() -> store.price((Book[]) null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Books array cannot be null");
     }
 
     @Test
