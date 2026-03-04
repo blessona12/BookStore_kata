@@ -31,6 +31,12 @@ public class BookStoreService {
             throw new IllegalArgumentException("Books array cannot be null");
         }
 
+        for (Book book : books) {
+            if (book == null) {
+                throw new IllegalArgumentException("Individual books cannot be null");
+            }
+        }
+
         if (books.length == 0) {
             return BigDecimal.ZERO;
         }

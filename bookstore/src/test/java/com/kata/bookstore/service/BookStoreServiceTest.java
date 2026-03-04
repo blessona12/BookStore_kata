@@ -25,6 +25,14 @@ public class BookStoreServiceTest {
     }
 
     @Test
+    void null_book_in_array_throws_exception() {
+        var store = new BookStoreService();
+        assertThatThrownBy(() -> store.price(Book.ONE, null, Book.TWO))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Individual books cannot be null");
+    }
+
+    @Test
     void one_book_costs_fifty_euros() {
         var store = new BookStoreService();
         assertThat(store.price(Book.ONE)).isEqualByComparingTo("50.0");
